@@ -1,0 +1,13 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ErrorPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<div>HEJ</div>
+
+<div>@Model.Value("error_Description")</div>
+<div>@Model.Value("errorCode")</div>
+
+@Model.Value("error_Description")
