@@ -31,7 +31,70 @@ a {
     
 }
 
+
+
 .language_dropdown:hover{
     color:white;
 }
 
+.blogImageTeaser{
+    width: 500px;
+    height: 300px;
+}
+
+.grid-container {
+
+    display: grid;  
+    grid-column-gap: 75px;
+    grid-row-gap: 75px;
+    grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
+    padding: 25px 25px;
+  }
+  
+  
+  .miniImageTeaser{
+    width: 300px;
+    height: 250px;
+}
+
+
+
+.headline{
+    
+    color: black;
+    text-decoration: none; /* no underline */ 
+
+}
+
+.review-Image{
+
+    height: 350px;
+    width: 600px;
+    margin-bottom: 32px;
+}
+
+.review-Text{
+    margin-top: 16px;
+    width: 80%;
+}
+
+.more-reviews ul{
+    display: flex;
+    padding: 0;
+    margin-top: 16px;
+
+}
+
+.more-reviews li{
+    list-style: none;
+    margin-right: 48px;
+}
+
+.more-reviews img{
+    width: 350px;
+    height:230px;
+}
+
+.fa-star{
+    font-size: 2em;
+}

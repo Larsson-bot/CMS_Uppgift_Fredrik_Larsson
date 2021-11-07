@@ -9,12 +9,20 @@
     .Children()
     .Where(x => x.IsVisible());
 }
-<ul>
+    <div class="grid-container ">
 	@foreach (var item in selection)
 	{
-		<li>
-			<a href="@item.Url()">@item.Name()</a>
-		</li>
+	
+	        var image = item.Value<IPublishedContent>("blogTeaserImage"); 	
+			<a class="link-dark " href="@item.Url()">
+			<div >
+			    <div><h1>@item.Value("blogTeaserHeadline")</h1></div>
+			    <img class="blogImageTeaser" src="@image.Url()">
+			</div>
+			
+		
+			</a>
+	
 	}
-</ul>
+    </div>
 

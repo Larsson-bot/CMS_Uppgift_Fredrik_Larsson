@@ -46,7 +46,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    
+                    @{
+                     var langForHome = @Model.GetCultureFromDomains();
+                    }
+                        <a class="nav-link" href="/@langForHome.Split("-")[0]/">Home</a>
                     @foreach (var item in selection)
                     {
                         var item2 = @Umbraco.GetDictionaryValue(item.Name);
@@ -65,10 +68,10 @@
                 
                     
                 </ul>
-                <div class="dropdown">
+                <div class="dropdown me-3">
                     <a class="language_dropdown dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        @*    @Umbraco.GetDictionaryValue("LanguageSettings")*@
-                        LangugeSettings
+                      @Umbraco.GetDictionaryValue("LanguageSettings")
+               
                     </a>
 
 

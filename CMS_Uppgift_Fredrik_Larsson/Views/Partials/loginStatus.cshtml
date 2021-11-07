@@ -9,7 +9,7 @@
     var isLoggedIn = Context.User?.Identity?.IsAuthenticated ?? false;
     var logoutModel = new PostRedirectModel();
     // You can modify this to redirect to a different URL instead of the current one
-    logoutModel.RedirectUrl = null;
+    logoutModel.RedirectUrl = "/";
 }
 
 @if (isLoggedIn)
@@ -28,9 +28,11 @@
 
 @if(isLoggedIn==false){
 
-
+var langForHome = @Model.GetCultureFromDomains();
 <div class="d-flex ">
-    <a class="nav-link text-light" href="@Umbraco.Content("ef5eb778-561b-4d2b-91d1-62d1ceef6be4").Url()">Login</a>
+   @* <a class="nav-link text-light" href="@Umbraco.Content("ef5eb778-561b-4d2b-91d1-62d1ceef6be4").Url()">Login</a>*@
+   @*A länk som inte fungerar med multi language.*@
+        <a class="nav-link text-light" href="/@langForHome.Split("-")[0]/login">@Umbraco.GetDictionaryValue("Login")</a>
     <a class="nav-link text-light"  href="#">Signup</a>
 </div>
 

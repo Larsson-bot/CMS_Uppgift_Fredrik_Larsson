@@ -5,8 +5,53 @@
 	Layout = "Master.cshtml";
 }
 
-<div>@Model.Value("blogTeaserHeadline")</div>
+<div class="row">
+    <div class="col-8">
+        <div><h2>@Model.Value("blogPostHeadline")</h2></div>
 
 
 
-<img src="@Model.BlogTeaserImage.Url()" />
+    <img  class="blogImageTeaser"src="@Model.BlogPostImage.Url()" />
+    
+    <div>
+        <p>@Model.Value("blogPostBreadText")</p>
+    </div>
+    </div>
+    <div class="col-4 text-center">
+        
+@{
+
+    
+    var page = Umbraco.AssignedContentItem;
+    var selection = Umbraco.Content(Guid.Parse("e7a0a44f-7600-4e19-9d7e-8c40c6d7b0ae"))
+    .ChildrenOfType("blogPost")
+    .Where(x => x.IsVisible() && x.Name != page.Name)
+    .OrderByDescending(x => x.CreateDate);
+    
+}
+<h3>
+    @Umbraco.GetDictionaryValue("You may also like")
+</h3>
+<ul class="list-unstyled ">
+	@foreach (var item in selection)
+	{
+	      var image = item.Value<IPublishedContent>("blogTeaserImage"); 	
+
+
+	
+		<li>
+			<a class="link-dark" href="@item.Url()">
+			<div >
+			    <div><h4>@item.Value("blogTeaserHeadline")</h4></div>
+			    <img class="miniImageTeaser" src="@image.Url()">
+			</div>
+			</a>
+		</li>
+	}
+</ul>
+
+
+    </div>
+</div>
+
+
