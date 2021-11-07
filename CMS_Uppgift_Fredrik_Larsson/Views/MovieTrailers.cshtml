@@ -4,3 +4,85 @@
 @{
 	Layout = "Master.cshtml";
 }
+
+@{
+    var selection = Umbraco.Content(Guid.Parse("d459c046-1fd8-4550-ad13-ec93fdd0dbad"))
+    .ChildrenOfType("movietrailer")
+    .Where(x => x.IsVisible())
+    .Where(x => x.Value<string>("trailerCatagory") == "Action")
+    .OrderByDescending(x => x.CreateDate);
+}
+
+@{
+    var selection2 = Umbraco.Content(Guid.Parse("d459c046-1fd8-4550-ad13-ec93fdd0dbad"))
+    .ChildrenOfType("movietrailer")
+    .Where(x => x.IsVisible())
+    .Where(x => x.Value<string>("trailerCatagory") == "Horror")
+    .OrderByDescending(x => x.CreateDate);
+}
+
+@{
+    var selection3 = Umbraco.Content(Guid.Parse("d459c046-1fd8-4550-ad13-ec93fdd0dbad"))
+    .ChildrenOfType("movietrailer")
+    .Where(x => x.IsVisible())
+    .Where(x => x.Value<string>("trailerCatagory") == "Real Life")
+    .OrderByDescending(x => x.CreateDate);
+}
+<div class="d-flex justify-content-between">
+<div><h3>Action</h3>
+
+<ul class="list-unstyled">
+    @foreach (var item in selection)
+    {
+      	var image = item.Value<IPublishedContent>("teaserTrailerImage"); 	
+       
+        <li>
+            <a href="@item.Url()">
+            <div><h4 class="text-dark">@item.Value("teaserTrailerHeadLine")</h4></div>
+            <img class="homeImageTeaser"  src="@image.Url()"/>
+   
+            </a>
+        </li>
+    }
+</ul>
+
+</div>
+
+
+<div><h3>Horror</h3>
+
+<ul class="list-unstyled">
+    @foreach (var item in selection2)
+    {
+      	var image = item.Value<IPublishedContent>("teaserTrailerImage"); 	
+       
+        <li>
+            <a href="@item.Url()">
+            <div><h4 class="text-dark">@item.Value("teaserTrailerHeadLine")</h4></div>
+            <img class="homeImageTeaser" src="@image.Url()"/>
+   
+            </a>
+        </li>
+    }
+</ul>
+
+</div>
+
+<div><h3>Real Life</h3>
+
+<ul class="list-unstyled">
+    @foreach (var item in selection3)
+    {
+      	var image = item.Value<IPublishedContent>("teaserTrailerImage"); 	
+       
+        <li>
+            <a href="@item.Url()">
+            <div><h4 class="text-dark">@item.Value("teaserTrailerHeadLine")</h4></div>
+            <img class="homeImageTeaser"  src="@image.Url()"/>
+   
+            </a>
+        </li>
+    }
+</ul>
+</div>
+</div>

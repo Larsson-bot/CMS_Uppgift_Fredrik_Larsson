@@ -4,3 +4,65 @@
 @{
 	Layout = "Master.cshtml";
 }
+
+
+@{
+     var page = Umbraco.AssignedContentItem;
+	 var selection = Umbraco.Content(Guid.Parse("d459c046-1fd8-4550-ad13-ec93fdd0dbad"))
+    .ChildrenOfType("movieTrailer")
+    .Where(x => x.IsVisible() && x.Name != page.Name);
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+             <h2>@Model.Value("trailerHeadline")</h2>
+        	@{
+      
+            var url = Model.Value("trailerUrl").ToString();
+            var endUrl = url.Split("?v=")[1];
+
+
+
+
+            var item2 = Model.Value<string>("trailerCatagory");
+            
+        
+            <div>
+                	<iframe width="560" height="315" src="https://www.youtube.com/embed/@endUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        		
+        	}
+        	<h4>Catagory</h4>
+            <div>@item2</div>
+        </div>
+        <div class="col-4">
+            <div>
+                <h4>@Umbraco.GetDictionaryValue("You may also like")</h4>
+                <ul class="list-unstyled ">
+            	@foreach (var item in selection)
+            	{
+            	    var image = item.Value<IPublishedContent>("teaserTrailerImage"); 	
+            		<li>
+            			<a class="link-dark" href="@item.Url()">
+            			<div >
+            			    <div><h4>@item.Value("teaserTrailerHeadLine")</h4></div>
+            			    <img class="miniImageTeaser" src="@image.Url()">
+            			</div>
+            			</a>
+            		</li>
+            	}
+        </ul>
+            </div>
+            
+        </div>
+    </div>
+       
+</div>
+
+
+
+
+

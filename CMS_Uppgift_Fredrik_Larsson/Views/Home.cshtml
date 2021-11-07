@@ -4,3 +4,111 @@
 @{
 	Layout = "Master.cshtml";
 }
+
+<div class="text-center">
+    <h1>@Umbraco.GetDictionaryValue("Welcome To")</h1>
+</div>
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("e7a0a44f-7600-4e19-9d7e-8c40c6d7b0ae"))
+    .ChildrenOfType("blogPost")
+    .Where(x => x.IsVisible());
+}
+
+<div class="d-flex justify-content-between">
+    <div class="mt-3 mb-3"><h3>@Umbraco.GetDictionaryValue("Latest") @Umbraco.GetDictionaryValue("Blog posts")</h3>
+    <ul class="list-unstyled">
+	@foreach (var item in selection)
+	{
+	var image = item.Value<IPublishedContent>("blogTeaserImage"); 	
+			<a class="link-dark " href="@item.Url()">
+		
+			    @if(item.Value("isPremiumRestricted").ToString() == "True" )
+    		    {
+    		    	<div>
+			            <div><h4>@item.Value("blogTeaserHeadline")</h4></div>
+			            <img class="homeImageTeaser" src="@image.Url()">
+		        	</div>
+    		        <div><h6>This content is for premium members only</h6></div>
+    		    }
+    		    else{
+    		    	<div class="mb-3">
+			            <div><h4>@item.Value("blogTeaserHeadline")</h4></div>
+			            <img class="homeImageTeaser" src="@image.Url()">
+		        	</div>
+    		    }
+		
+			</a>
+	}
+</ul>
+</div>
+
+
+@{
+	var selection2 = Umbraco.Content(Guid.Parse("bc9d62a0-44b4-41d9-b354-5bcc71591027"))
+    .ChildrenOfType("movieReview")
+    .Where(x => x.IsVisible());
+}
+    <div  class="mt-3 mb-3"><h3>@Umbraco.GetDictionaryValue("Latest") @Umbraco.GetDictionaryValue("Movie Reviews")</h3>
+    <ul class="list-unstyled">
+	@foreach (var item in selection2)
+	{
+		var image = item.Value<IPublishedContent>("reviewTeaserImage"); 	
+			<a class="link-dark " href="@item.Url()">
+		
+			 @if(item.Value("isPremiumRestricted").ToString() == "True" )
+    		 {
+    		 	<div >
+			        <div><h4>@item.Value("reviewTeaserHeadline")</h4></div>
+			        <img class="homeImageTeaser" src="@image.Url()">
+			    </div>
+                <div><h6>This content is for premium members only</h6></div>
+    		 }
+    		 else{
+    		 	<div class="mb-3">
+			        <div><h4>@item.Value("reviewTeaserHeadline")</h4></div>
+			        <img class="homeImageTeaser" src="@image.Url()">
+			    </div>
+    		 }
+		
+			</a>
+	}
+</ul>
+</div>
+
+
+@{
+	var selection3 = Umbraco.Content(Guid.Parse("d459c046-1fd8-4550-ad13-ec93fdd0dbad"))
+    .ChildrenOfType("movieTrailer")
+    .Where(x => x.IsVisible());
+}
+    <div  class="mt-3 mb-3"><h3>@Umbraco.GetDictionaryValue("Latest") @Umbraco.GetDictionaryValue("Movie Trailers")</h3>
+<ul class="list-unstyled">
+	@foreach (var item in selection3)
+	{
+		var image = item.Value<IPublishedContent>("teaserTrailerImage"); 	
+			<a class="link-dark " href="@item.Url()">
+		
+		 	 @if(item.Value("isPremiumRestricted").ToString() == "True" )
+    		 {
+    		 	<div>
+			        <div><h4>@item.Value("teaserTrailerHeadLine")</h4></div>
+			        <img class="homeImageTeaser" src="@image.Url()">
+			    </div>
+                <div class="mb-3"><h6>This content is for premium members only</h6></div>
+    		 }  
+    		 else{
+    		 	<div class="mb-3">
+			        <div><h4>@item.Value("teaserTrailerHeadLine")</h4></div>
+			        <img class="homeImageTeaser" src="@image.Url()">
+			    </div>
+    		 }
+		
+			</a>
+	}
+</ul>
+</div>
+
+</div>
+
+

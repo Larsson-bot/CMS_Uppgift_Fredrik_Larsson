@@ -8,14 +8,10 @@
 <div class="row">
     <div class="col-8">
         <div><h2>@Model.Value("blogPostHeadline")</h2></div>
-
-
-
-    <img  class="blogImageTeaser"src="@Model.BlogPostImage.Url()" />
-    
-    <div>
-        <p>@Model.Value("blogPostBreadText")</p>
-    </div>
+        <img  class="blogImageTeaser"src="@Model.BlogPostImage.Url()" />
+        <div>
+            <p>@Model.Value("blogPostBreadText")</p>
+        </div>
     </div>
     <div class="col-4 text-center">
         
@@ -29,28 +25,23 @@
     .OrderByDescending(x => x.CreateDate);
     
 }
-<h3>
-    @Umbraco.GetDictionaryValue("You may also like")
-</h3>
-<ul class="list-unstyled ">
-	@foreach (var item in selection)
-	{
-	      var image = item.Value<IPublishedContent>("blogTeaserImage"); 	
-
-
-	
-		<li>
-			<a class="link-dark" href="@item.Url()">
-			<div >
-			    <div><h4>@item.Value("blogTeaserHeadline")</h4></div>
-			    <img class="miniImageTeaser" src="@image.Url()">
-			</div>
-			</a>
-		</li>
-	}
-</ul>
-
-
+        <h3>
+            @Umbraco.GetDictionaryValue("You may also like")
+        </h3>
+        <ul class="list-unstyled ">
+        	@foreach (var item in selection)
+        	{
+        	    var image = item.Value<IPublishedContent>("blogTeaserImage"); 	
+        		<li>
+        			<a class="link-dark" href="@item.Url()">
+        			<div >
+        			    <div><h4>@item.Value("blogTeaserHeadline")</h4></div>
+        			    <img class="miniImageTeaser" src="@image.Url()">
+        			</div>
+        			</a>
+        		</li>
+        	}
+        </ul>
     </div>
 </div>
 
